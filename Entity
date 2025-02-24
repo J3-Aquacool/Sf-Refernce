@@ -1,0 +1,22 @@
+City:Table
+__________________________
+city_id ,
+city_name ,
+population,
+mean_income ,
+PRIMARY KEY (city_id)
+
+*************
+Customer: Table
+______________________
+customer_id,
+first_name,
+last_name ,
+date_of_birth ,
+gender,
+city_id,
+PRIMARY KEY (customer_id),
+FOREIGN KEY (city_id) REFERENCES city(city_id)
+
+
+
