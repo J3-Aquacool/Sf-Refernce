@@ -1,0 +1,13 @@
+Install Mongodb Tools:
+https://www.mongodb.com/try/download/database-tools
+download the zip file from the below
+
+
+Tools
+
+Check for this ---> MongoDB Command Line Database Tools Download
+
+set the path in env variables
+mongoimport --db aggrsample --collection test --file sample.json
+
+
