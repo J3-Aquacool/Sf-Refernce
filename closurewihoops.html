@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+   <script>
+
+    function Employee() {
+        //Declare methods and properties as private i.e. Encapsulation
+        var _FirstName = "";
+        var _LastName = "";
+        var _EmployeeCode = "";
+        var _AddEmployee = function()
+        {
+             _Validate();
+             _DbConnection();
+             console.log("Employee Added into the Database");
+        }
+        var _Validate = function(){
+             console.log("Employee Validated");
+        }
+        var _DbConnection = function(){
+             console.log("Database Connection Successful");
+        }
+        //Abstraction: Show only what is necessary
+        return {
+            FirstName : _FirstName,
+            LastName :  _LastName,
+            EmployeeCode: _EmployeeCode,
+            AddEmployee : _AddEmployee
+        }
+  };
+  var Emp1 = new Employee();
+  Emp1.FirstName = "Jaya";
+  Emp1.LastName = "H";
+  Emp1.EmployeeCode = "Emp1001";
+  Emp1.AddEmployee();
+ 
+   </script>
+   
+</head>
+<body>
+    
+</body>
+</html>
