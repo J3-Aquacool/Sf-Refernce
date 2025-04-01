@@ -1,0 +1,195 @@
+jsx:
+
+<React.Fragment></>
+<></>
+One parent and mulitple childs
+Create a Component
+Step -1
+<div>
+<div></div>
+<div></div>
+</div>
+
+----> Inspect the above in dev tools of ur browser
+Step -2
+<React.Fragment> // Built in library which is apart of React Library
+<div></div>
+<div></div>
+</React.Fragement>
+----> Again Inspect the above in dev tools of ur browser
+
+Step- 3: Use JSX fragements
+<> 
+<div></div>
+<div></div>
+</>
+
+
+
+1. Task 2
+
+1.1 We have a created a Component
+img:Public/ src / own folder
+anyoher folder structure apart from pulbic  / src is   viloation as per react directory structure
+
+Props/ Properties
+1.2 we want add different data for the same component
+profile name desg?
+props: properties
+
+What is the work of this props?
+
+Props/properties are the values usually passed from parent component
+
+
+
+Steps :
+
+1.create props and assign a value
+2.access the props in functional or class component
+3.Lets assign a proptypes[ Using Proptypes,react-dom] ,Default Props.
+4. Lets render based on the condition( condional rendering)
+if()
+{
+
+}
+
+else
+{
+
+}
+
+
+
+condtion ? epxression1:expression2
+
+
+
+
+
+Manoj: 
+
+Components: Many Components,each component has a interlink with one-another compinent
+
+[Componenet--->LoanApplicationComponent-----SME Loan Componnent--Vehicle Component]
+
+LoanApplicationComponent--->Parent---->Nested--- SMELoanComponnent----Nested ----->Vehicle Component
+
+
+How do i pass data from Parent component to other Nested Components
+Can we have nested Components? yes
+
+
+
+function ComponentA()
+{
+return (
+
+<ComponentB data="Data passed from parent component"/>
+)
+}
+
+
+function ComponentB(props)
+{
+return (
+<ComponentC datab={props.data}/>
+)
+}
+
+function ComponentC(props)
+{
+return (
+<ComponentD datac={props.datab}/>
+)
+}
+
+
+function ComponentD()
+{
+return (
+
+<h1>{props.datac}</h1>
+)
+}
+
+
+
+All components which are nested down the track should be able acces their data/ pass the data to all  nested child components
+
+
+Props Drilling
+............
+
+// Use-Case : Without Props get the Data inside and nested component
+Step 1: Create a file by a name releavent AppContext.js/jsx
+
+Step2 2: Invoke the createContext() -----> Function
+
+const AppContextData=createContext()
+
+export default AppContextData;
+
+
+Step2: Create the below components
+a)MainComponent.jsx/js
+b)ChildComponent.jsx/js
+c)SiblingComponent.jsx/js
+
+Step3: Create the code for MainComponenet which is goin to act as a provider
+import AppContextData from './AppContext'
+function MainComponent()
+{
+const data="Im coming from Main Component"
+return(
+<AppContextData.Provider value={data}>
+<ChildComponent/>
+</AppContextData.Provider>
+)}
+
+// Next Create the ChildComponent
+
+function ChildComponent()
+{
+
+return(
+<SiblingComponent/>
+)
+}
+// Next Create the Sibling Component
+
+import AppContextData from './AppContext'
+function SiblingComponent()
+{
+
+return(
+
+<AppContextData.Consumer>
+{(somedata)=>(
+<p>Returned Data from the Top Level{somedata}</p>
+)}
+</AppContextData.Consumer>
+)
+}
+step last : Call the MainComponent inside the App.js/jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
