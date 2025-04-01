@@ -1,0 +1,6 @@
+Assignments (Classroom Practical Session)
+
+1. Fixed Deposit Summary Component
+•	Create a FixedDepositSummary component that takes props:
+o	depositAmount, interestRate, tenure, maturityAmount
+•	Display these details in a styled card.
