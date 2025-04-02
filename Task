@@ -1,0 +1,36 @@
+Task : useContext
+
+1.Assuming the data below to be strored inside the context.
+2. Create Components Based on the type of loan and display their respective loan details
+loaninfo:{
+
+ housingloan:
+{
+loantype:"Home Loan",
+roi:9.5,
+salaried:true,
+tenure:"20 years"
+},
+ vehicleloan:
+{
+loantype:"Vehicle Loan",
+roi:11.5,
+salaried:true,
+tenure:"10 years"
+},
+
+
+goldloan:
+{
+loantype:"Gold Loan",
+roi:22.5,
+salaried:false,
+tenure:"1 year"
+}
+
+}
+
+
+
+
+
