@@ -1,17 +1,22 @@
 import React from 'react'
-import {BrowserRouter,Routes,Route,Link} from 'react-router-dom'
+import {BrowserRouter,Routes,Route,Link, Outlet} from 'react-router-dom'
 export default function RouteComponent() 
 {
   return (
     <div>RouteComponent
-     <BrowserRouter>
+    
+    <BrowserRouter>
     <Dashboard/>
     <Routes>
     <Route path="/" element={<Home/>}/>
     <Route path="/order/myorder" element={<Orders/>}/>
-    <Route path="/cart" element={<Cart/>}/>
+    <Route path="/cart" element={<Cart/>}>
+                <Route path="itembill" element={<ItemBillComponent/>}/>
+                <Route path="payment" element={<Paymment/>}/>  
+    </Route>
     <Route path="/*" element={<ErrorPage/>}/>
     </Routes>
+     
     </BrowserRouter>
     </div>
   )
@@ -53,9 +58,16 @@ return(
 function Cart()
 {
 return(
-
+<>
     <h1> Cart Component</h1>
-)
+<button><Link to="itembill">ItemBill</Link></button>
+<button><Link to="payment">Payment</Link></button>
+
+<Outlet/>
+
+</>
+
+    )
 
 
 }
@@ -64,5 +76,22 @@ function ErrorPage()
 {
 return(
 <h1> Page Not Found</h1>
+)
+}
+
+function ItemBillComponent()
+{
+return(
+<>
+<h1>Item Bill Component</h1>
+</>
+
+)
+}
+
+function Paymment()
+{
+return(
+<h1> Payment</h1>
 )
 }
