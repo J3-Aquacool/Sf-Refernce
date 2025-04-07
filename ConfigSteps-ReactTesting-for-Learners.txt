@@ -1,0 +1,92 @@
+// React TestLibrary and Jest Setup
+
+create a setup.js file first
+
+Step-1
+
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @vitejs/plugin-react-swc
+
+Step -2
+
+Update vite.config.js
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,                // Enable Jest-style globals
+    environment: 'jsdom',         // DOM environment
+    setupFiles: './src/tests/setup.js', // Setup file for jest-dom, etc.
+  },
+});
+
+
+
+Step 3. Create Setup File
+
+// src/tests/setup.js
+import { afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+
+afterEach(() => {
+  cleanup();
+});
+
+
+
+Step :4 Add Vitest Script to package.json
+
+"scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "test": "vitest --coverage", // here coverage is optional only if required
+  "test-ui":"vitest --ui"
+
+}
+
+
+Step 5: run with:
+
+npm test
+Or:
+
+npx vitest --ui
+
+
+Step 6:Fix ESLint for expect, test, etc.
+If you're using flat config:
+// eslint.config.js
+import js from '@eslint/js';
+import globals from 'globals';
+
+export default [
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.jest, //  This adds test, expect, describe, etc.
+      },
+    },
+  },
+];
+
+// Additional if reqquired
+In package .json
+"scripts": {
+  "test": "vitest",
+  "test:ui": "vitest --ui"
+}
+
+
+
+Then just run:
+
+npm test
+Or open the UI mode:
+
+npm run test:ui
