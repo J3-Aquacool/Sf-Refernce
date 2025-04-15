@@ -1,0 +1,75 @@
+package com.automation.demo.AutomateWebTests;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class BrowserTestSetup {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+	//System.setProperty("webdriver.chrome.driver", "./setupdriver/chromedriver.exe");
+	//	WebDriverManager.chromedriver().setup();
+		
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://localhost:5173/");
+		WebElement element=driver.findElement(By.name("firstname"));
+		element.sendKeys("Manoj",Keys.ENTER);
+		element.click();
+		
+	WebElement element1=driver.findElement(By.name("myheader"));
+		System.out.println(element1.getText());
+	
+//driver.findElement(By.cssSelector("#APjFqb"));
+		//driver.findElement(By.xpath("//*[@id=\"APjFqb\"]"));
+		
+	//	driver.findElement(By.xpath("//*[@id=\\\"APjFqb\\\"]")).sendKeys("Spring Rest API with",Keys.ENTER);
+		
+		
+		
+		
+		
+		
+		Thread.sleep(5000);
+		
+		
+		System.out.println("found");
+		
+		
+		
+		driver.navigate().to("https://www.w3schools.com/");
+		Thread.sleep(3000);
+		
+		driver.navigate().back();
+		Thread.sleep(3000);
+		
+		driver.navigate().forward();
+		Thread.sleep(3000);
+		
+		driver.navigate().to("http://localhost:5173/");
+		
+		Thread.sleep(3000);
+		
+		driver.navigate().refresh();
+		
+		
+		
+		
+		Thread.sleep(4000);
+		
+		driver.quit();
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}
