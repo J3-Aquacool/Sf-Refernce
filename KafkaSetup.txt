@@ -1,0 +1,49 @@
+
+First Download:
+https://kafka.apache.org/downloads
+
+1) Start Zookeeper
+
+cmd>cd C:\kafka_2.12-2.6.0
+cmd> .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+2) Start Kafka setup
+
+cmd> cd C:\kafka_2.12-2.6.0
+cmd> .\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+.\bin\windows\kafka-server-stop.bat .\config\server.properties
+
+3) Create a Topic
+
+cmd>.\bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic myKafkaTest
+
+
+open another cmd prompt
+// Lets first check without creating business code
+.\bin\windows\kafka-console-producer.bat --topic myKafkaTest --bootstrap-server localhost:9092
+
+open another cmd prompt
+//.\bin\windows\kafka-console-consumer.bat --topic myKafkaTest --from-beginning --bootstrap-server localhost:9092
+
+
+
+
+
+
+
+
+
+
+
+List all topics
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+
+Describe the information about topics
+
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic demotopic
+// creating topic from command line
+
+
+.\bin\windows\kafka-topics.bat --create --topic demotopic-dummy --bootstrap-server localhost:9092
