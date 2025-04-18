@@ -1,6 +1,5 @@
-#getting base image from ubuntu
-FROM ubuntu
-MAINTAINER JHCOOL
-RUN apt-get update
-CMD ["echo","Hello Docker Image"]
+FROM nginx
+RUN rm /usr/share/nginx/html/*
+COPY index.html /usr/share/nginx/html/
+
 
