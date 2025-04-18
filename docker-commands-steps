@@ -1,0 +1,86 @@
+Docker Commands
+Basic Commands
+docker version
+docker -v
+docker info
+docker --help
+docker login
+
+
+Images
+What are Images?: Images are the templates used to create Docker Containeer.
+Images are stored in the Registry ie:Docker Hub Registry
+
+
+docker images
+docker images -f "dangling=false": displays image which are not asscoited with container
+docker images -f "dangling=true": displays image which are  asscoited with container
+docker images -q: displays images only by id
+
+
+
+docker pull
+docker pull ubuntu
+docker pull ubuntu:tagname
+docker rmi
+
+
+Containers:
+Are running instance of Docker images
+A conatiner image is a light weight stand alone executable  package of a piece of software that includes everything needed to run a code,runtimem,system tools,system libraries,settings.
+docker ps
+docker run
+docker run --name Ubuntutest -it ubuntu bash
+
+docker stop Ubuntutest
+docker rm Ubuntutest
+or docker rm -f Ubuntutest
+
+docker start Ubuntutest
+
+docker stop Ubuntutest
+
+docker pause Ubuntutest
+docker unpause Ubuntutest
+
+docker attach Ubuntutest
+docker history imagename/id
+
+// Push it
+docker tag my-ubuntu-image jagdish80/ubuntutest_2023:latest
+docker push jagdish80/ubuntutest_2023:latest
+docker inspect ubuntutest_2023:latest
+docker inspect jagdish80/ubuntutest_2023:latest
+
+
+System
+docker stats
+docker system df
+docker system prune
+
+
+
+// Running jenkins on docker
+docker pull jenkins/jenkins
+rn
+
+Next show
+docker stop NewJenkins123: it will be stopped check in thers
+docker ps:gives the info the conatiner is running
+docker ps -a
+
+docker rm NewJenkins123
+docker ps -a
+
+docker run --name NewJenkins1234 -p 8181:8080 -p 52000:50000 --restart=on-failure -v d:/dockertolocal/cicd:/var/jenkins_home jenkins/jenkins:lts-jdk17
+
+
+Here we will not change the directory it should ensure that the same directory is there ,by this we can share the some persistance place by other conatimers
+
+check on browser: localhost:8181
+
+
+
+docker run --name NewJenkins12345 -p 8181:8080 -p 52000:50000 --restart=on-failure -v jenkindockervol:/var/jenkins_home jenkins/jenkins:lts-jdk17
+
+

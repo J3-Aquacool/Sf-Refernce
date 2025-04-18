@@ -1,0 +1,67 @@
+
+
+Example Basic:
+// Creating Our First docker Image and containerize and running
+
+
+Step 1: create a directory in your local machine
+
+ex: MyApp
+
+
+Step 2: change to your directory 
+
+cd MyApp
+
+Step 3: Lets create  a sample index.html and host it on nginx server
+
+
+step 4: create a docker file as shown below
+FROM nginx   // we are asking docker to get nginx image available over docker hub
+RUN rm /usr/share/nginx/html/*    // this will remove default files in nginx server
+COPY index.html /usr/share/nginx/html/ // here the local html file will be copied to 
+the directory of nginx server
+
+
+step 5: lets build a image using docker commands and docker file
+
+docker build -t myngapp .
+next use the comman to verify docker images are create ?:docker images
+
+step 6: After successfuly creating lets bind this image to container and run it
+docker run -p 9494:80 myngapp 
+
+9494: is the port number which will be used to acces the application from local machine
+
+80 is the port redirected to run this on docker
+
+step 7: open the browser and type
+http://localhost:9494/
+http://localhost:9494/index.html
+
+
+Example2 : With Java
+
+
+
+
+
+
+Docker Demo for SpringBoot with Docker File
+D:\DemoSpringApp\Workstation\workspace\DemoApp1>
+
+docker build -t springboot-k8-myapp:1.2 .
+docker run -p 6767:9797 springboot-k8-myapp:1.2
+
+here 9797 is the port on which the tomcat is running in the container
+6767 is the port what the local machine can access
+
+
+Once it is up and running access it has
+http://localhost:6767/greets
+
+
+useful commands
+docker ps : container details
+docker ps -q : all conatiners which are running
+docker images: to get the deatils of images

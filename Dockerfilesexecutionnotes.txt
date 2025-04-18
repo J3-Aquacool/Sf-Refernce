@@ -1,0 +1,26 @@
+Step 1: Create docker file
+
+First demo
+d:\dockerfiles> use this d,irectory to show first demo
+docker build .
+or 
+docker build -t imagedemo1.0 .
+
+
+
+
+
+
+For SpringBoot Demo
+use the below folder for reference
+D:\SpringDockerServiceDeploy\workspace\SpringMicroServiceApp>
+docker build -t springmicroapp:1.0 .
+docker run -p 8989:8080 springmicroapp:1.0
+
+After that lets push to docker hub
+
+first you have to tag ur image to the repository of dockerhub
+docker tag springmicroapp:1.0 jagdish80/springmicroapp:1.0
+and then push
+docker push jagdish80/springmicroapp:1.0
+

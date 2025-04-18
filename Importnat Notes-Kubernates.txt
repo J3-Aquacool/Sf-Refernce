@@ -1,0 +1,239 @@
+What is Kubernates?
+
+Kubernates is an open source container-orchestration engine or conatiner managment tool,it automates deploying 
+,scaling,and managing contianerized application.
+
+Kubernates is also called K8s: becauese between k and s there are 8 characters
+Developed by google lab ie; Cloud Native Computing Foundation
+
+
+developed using Go-Lang
+
+
+Kubernates: Conatiner Management Tool
+***********
+Lets Split to understand
+
+Container: Docker[It use docker for creating conatiner]
+Mnaagement: Means it manages [Deployment,Scaling,Scheduling,LoadBalancing]
+Tool:Its a tool used to manage your contAiner for the above mentioned requirements.
+
+
+Use Case : When N no. of conatiner need to be managed
+ which means manually i have to take care of[Deploying,Scheduling,LoadBalaning,Scaling,Batch Execution,Rollback,Monitoring,self healing etc] 
+its not a easy task,thats where kubernates comes,you just need to write the code push image to container like docker
+and rest K8s will take care.
+
+Like Kubernates other Tools are:Docker Compose,Apache Marathon
+
+Kubernates Components and why we nedd it in Microservice world:
+
+Pod: iN K8S we dont interact with conatiner ,so these conatiners will wrapped in nodes,has one indicidual function unit and one pod can communicate with other pod.
+Each pod will have unique ip address allocated
+
+Node:A node can have one or mulitple nodes wrapped,we can have mulitple nodes
+wrapped in a single cluster.
+
+Cluster: are comprise of 1 master node and number of worker nodes,these nodes can be a physical or virtual machines,depending on the cluster created.
+
+Replication Set or Controller:
+To overcome application downtime,which will act has replica,if any pod crashes,it will bring up a new node on runtime.
+
+Service:Each pod is assciated with one service asscoiated with static ip address,so that they can still talk to each other incase pod goes down and replica is created.
+
+Deployment:are kubernates object to manage pods,you can scale your application
+by increasing the number of pods running or update the running  using deployment object
+ex: we do this by
+kubectl create deployment sprinng-boot-k8s --image=springboot-k8-app:1.0 --port 9797 --replicas=10
+via cmd or yaml file apporach we can do this.
+
+
+Secrets:to store sensative information about ur application,like db passwords.
+it will store encryted format
+
+ConfigMap:to store sensative information about ur application,like db passwords.
+it will store text format
+
+ETCD:Open source is an open source, distributed, consistent key-value store for shared configuration, service discovery, and scheduler coordination of distributed systems or clusters of machines
+1. Kubernates uses etcd as key-value database store.It stores the configuration
+of the kubernates cluster in etcd
+2. Its stores all the screts and configMap data inside etcd.
+
+In UNIX, all system configuration files for a single system are contained in a folder called "/etc;" "d" stands for "distributed."
+etcd (pronounced et-see-dee)
+
+Note :Max Limit is 1 Mb store secrets.
+
+
+What is Minikube?
+In Kubernate we have cluster and in this cluster we have one or more nodes,and this nodes can have mutpile pods and these pods can have mutiple conatiner.
+
+Why Minikube?
+Usualy used to run k8s cluster in your local machine
+Minikube runs a single node clusteron your machine so that you can try for daily
+development work
+
+
+
+
+
+1. Create a directory
+d:\D:\Minikube
+
+Download Kubectl from below official site
+https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+ See for this below option click on the patch
+
+[Install kubectl binary with curl on Windows
+Download the latest 1.30 patch release: kubectl 1.30.0.
+]
+
+https://www.downloadkubernetes.com/
+
+Download Minikube
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
+See for this below option click on the patch
+[To install the latest minikube stable release on x86-64 Windows using .exe download:
+Download and run the installer for the latest release.
+]
+// Also check your processor architecture
+echo %PROCESSOR_ARCHITECTURE%
+
+
+2. copy Kubectl and minikube application to this directory
+d:\Minikube
+
+
+3. start command prompt for windows
+check for minikube version
+minikube version
+
+
+4. To start the minikube we need a driver,there are multiple drivers
+Checkout the below documentation link for more details
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
+
+See for the below note to know more about drivers
+What you’ll need
+2 CPUs or more
+2GB of free memory
+20GB of free disk space
+Internet connection
+Container or virtual machine manager, such as: Docker, QEMU, Hyperkit, Hyper-V, KVM, Parallels, Podman, VirtualBox, or VMware Fusion/Workstation
+
+Click on Docker or HyperV to get details to use them
+
+
+// Now we should be ready to start
+
+
+// Start the docker-engine ie Docker Desktop
+
+
+minikube status
+
+
+
+minikube start
+
+minikube start --driver=docker
+
+
+
+
+
+minikube config set driver docker  
+
+
+kubectl cluster-info : displays cluster info created
+
+
+minikube status: Now check
+
+/************* Watch for the below output
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+*/
+
+It should provide now a single node use the below command get this info
+
+kubectl get node
+
+
+
+/* Below output should be displayed
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   3d3h   v1.30.0
+*/
+
+minikube docker-env: Tis will tell K8 that we will be working on local docker machine
+
+it will generate some output copy the below line
+
+@FOR /f "tokens=*" %i IN ('minikube -p minikube docker-env --shell cmd') DO @%i
+
+copy this paste and execute
+docker images
+
+// Navigate the directory where your application you have created
+cd D:\DemoSpringApp\Workstation\workspace\DemoApp1
+
+// lets now create a image for this application
+docker build -t springboot-k8-app:1.0 .
+
+// now check
+docker images
+kubectl delete deployment sprinng-boot-k8s: if created then use this else na
+
+kubectl create deployment sprinng-boot-k8s --image=springboot-k8-app:1.0 --port 9797
+
+
+kubectl get deployments
+kubectl describe deployment sprinng-boot-k8s
+kubectl get pods
+kubectl logs sprinng-boot-k8s-7446f74869-rhfqp
+
+or
+
+kubectl logs deployment/sprinng-boot-k8s
+
+
+kubectl get pods // cross check if everything is fine and running
+kubectl expose deployment sprinng-boot-k8s --type=NodePort // Now Expose the application to acces from local machine using kubernates
+
+minikube service sprinng-boot-k8s --url // here it will now provide url after firing this command
+
+or
+kubectl port-forward service/sprinng-boot-k8s 9797:9797
+
+
+Open the browser and test it
+
+open another terminal and start the kubernates dashboard
+
+D:\DemoSpringApp\Workstation\workspace\DemoApp1>minikube dashboard
+
+// Now lets delete the service
+
+kubectl get service  // check the service first
+
+kubectl delete service sprinng-boot-k8s // it will delete the service
+//Next lets delete the deployment
+kubectl delete deployment sprinng-boot-k8s
+
+
+//Next lets delete the deployment
+kubectl delete deployment sprinng-boot-k8s
+
+// now check if any pods are available
+kubectl get pods
+
+kubectl get nodes // displayes nodes
+
+// Now if u want to completey remove minikube and its associated VM or dependiceis
+// to save tke local machine space
+minikube delete
