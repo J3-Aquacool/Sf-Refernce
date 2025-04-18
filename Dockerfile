@@ -1,5 +1,10 @@
-FROM openjdk:17-jdk-alpine
+FROM node
 WORKDIR /app
-COPY target/demoapp.jar /app/demoapp.jar
-EXPOSE 9797
-ENTRYPOINT ["java", "-jar", "demoapp.jar"]
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 5173
+CMD ["npm","start"]
+//Please kindly remove
+docker build -t spaapp:1.0 .
+docker run -d --name spaappcontainer -p 3200:5173 spaapp:1.0
