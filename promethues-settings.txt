@@ -1,0 +1,8 @@
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "Service-Pro"
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 20s
+    static_configs:
+    - targets: ["localhost:8080"]
