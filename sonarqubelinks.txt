@@ -1,0 +1,4 @@
+First Download
+https://www.sonarsource.com/products/sonarqube/downloads/historical-downloads/
+
+https://docs.sonarsource.com/sonarqube-server/10.4/analyzing-source-code/scanners/sonarscanner/#running-from-zip-file
