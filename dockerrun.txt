@@ -1,0 +1,1 @@
+>docker run --name jdbc-mysql-app-container -e DB_URL=jdbc:mysql://host.docker.internal:3305/myappdb -e DB_USER=root -e DB_PASS=admin -d jdbc-mysql-app:v1
