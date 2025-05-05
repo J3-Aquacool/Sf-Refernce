@@ -1,0 +1,8 @@
+sonar.host.url=http://localhost:9797
+sonar.projectKey=productreactapp
+sonar.projectName=productreactapp
+sonar.projectVersion=1.0
+sonar.sources=src
+sonar.exclusions=**/node_modules/**,**/*.test.js,**/*.spec.js
+sonar.javascript.lcov.reportPaths=coverage/lcov-report/index.html
+sonar.login=sqp_9bfac92f13af148ecaaf547cc3dea5c44743bfe0
